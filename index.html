@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name | Academic Profile</title>
+  <style>
+    :root {
+      --bg: #f7f9fc;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #1d4ed8;
+      --primary-light: #dbeafe;
+      --border: #e5e7eb;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+
+    .nav .brand {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      padding: 72px 0 36px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.15;
+    }
+
+    .hero-text .subtitle {
+      font-size: 1.12rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      margin: 0 0 18px;
+      color: #374151;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0 26px;
+    }
+
+    .tag {
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 11px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--text);
+      font-weight: 600;
+      box-shadow: var(--shadow);
+    }
+
+    .button.primary {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .profile-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+      display: grid;
+      place-items: center;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 0 auto 18px;
+    }
+
+    .profile-card h3 {
+      margin: 0 0 6px;
+      text-align: center;
+      font-size: 1.35rem;
+    }
+
+    .profile-card p {
+      margin: 0;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .profile-meta {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      display: grid;
+      gap: 10px;
+      font-size: 0.96rem;
+    }
+
+    main {
+      padding-bottom: 64px;
+    }
+
+    section {
+      margin-top: 26px;
+    }
+
+    .section-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .section-title {
+      margin: 0 0 18px;
+      font-size: 1.5rem;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .item {
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: #fcfdff;
+    }
+
+    .item h3 {
+      margin: 0 0 6px;
+      font-size: 1.08rem;
+    }
+
+    .item .meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .interest-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .interest-box {
+      padding: 18px;
+      border-radius: 18px;
+      background: #f8fbff;
+      border: 1px solid #dbeafe;
+    }
+
+    .interest-box h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      color: #1e3a8a;
+    }
+
+    .pub-list,
+    .patent-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .pub-item,
+    .patent-item {
+      padding: 18px;
+      border-left: 4px solid var(--primary);
+      background: #fbfdff;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+
+    .pub-item strong,
+    .patent-item strong {
+      display: block;
+      font-size: 1.02rem;
+      margin-bottom: 6px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 30px 0 60px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 860px) {
+      .hero-grid,
+      .two-col,
+      .interest-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .hero {
+        padding-top: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">Your Name</div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#research">Research Interest</a>
+        <a href="#publications">Publications</a>
+        <a href="#patents">Patent</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <h1>안녕하세요,<br />저는 <span style="color: var(--primary);">Your Name</span>입니다.</h1>
+          <div class="subtitle">M.S./Ph.D. Student · Robotics / Computer Vision / AI Researcher</div>
+          <p>
+            저는 <strong>[연구실 이름]</strong>에서 연구하고 있으며, 주된 관심 분야는
+            <strong>Computer Vision</strong>, <strong>Robotics</strong>,
+            <strong>Visual SLAM</strong>, <strong>3D Scene Understanding</strong>입니다.
+            이 페이지는 연구실 홈페이지에 게시할 개인 소개 페이지로, 학력, 연구 관심사,
+            논문 및 특허 정보를 간단히 정리한 것입니다.
+          </p>
+
+          <div class="tag-list">
+            <span class="tag">Visual SLAM</span>
+            <span class="tag">3D Scene Graph</span>
+            <span class="tag">Robotics</span>
+            <span class="tag">Computer Vision</span>
+          </div>
+
+          <div class="actions">
+            <a class="button primary" href="#publications">View Publications</a>
+            <a class="button" href="#contact">Contact</a>
+          </div>
+        </div>
+
+        <aside class="profile-card">
+          <div class="avatar">YN</div>
+          <h3>Your Name</h3>
+          <p>Graduate Researcher</p>
+
+          <div class="profile-meta">
+            <div><strong>Affiliation:</strong> [University / Laboratory Name]</div>
+            <div><strong>Email:</strong> your.email@university.edu</div>
+            <div><strong>Office:</strong> [Building / Room]</div>
+            <div><strong>Homepage:</strong> <a href="#">Personal Website or Google Scholar</a></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about" class="section-card">
+      <h2 class="section-title">About Me</h2>
+      <p>
+        저는 [대학교/학과]에서 [석사/박사] 과정을 수행 중이며,
+        실제 환경에서 동작 가능한 지능형 시스템을 만들기 위해
+        시각 인식, 3차원 장면 이해, 로봇 인지 및 추론 문제를 연구하고 있습니다.
+        특히 복잡한 환경에서의 <strong>정확한 공간 이해</strong>,
+        <strong>의미 기반 장면 표현</strong>, 그리고 <strong>실시간 로봇 적용 가능성</strong>에
+        관심이 있습니다.
+      </p>
+    </section>
+
+    <section id="education" class="section-card">
+      <h2 class="section-title">Education</h2>
+      <div class="two-col">
+        <div class="item">
+          <h3>M.S./Ph.D. in [Major]</h3>
+          <div class="meta">[University Name], [Year] – Present</div>
+          <div>
+            Advisor: Prof. [Advisor Name]<br />
+            Research Area: Robotics, Computer Vision, AI
+          </div>
+        </div>
+        <div class="item">
+          <h3>B.S. in [Major]</h3>
+          <div class="meta">[University Name], [Year] – [Year]</div>
+          <div>
+            Relevant Coursework: Machine Learning, Computer Vision, Robotics,
+            Linear Algebra, Optimization
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="research" class="section-card">
+      <h2 class="section-title">Research Interest</h2>
+      <div class="interest-grid">
+        <div class="interest-box">
+          <h3>Visual SLAM</h3>
+          <p class="muted">
+            Robust localization and mapping, loop closure, geometric consistency,
+            and real-time operation in dynamic environments.
+          </p>
+        </div>
+        <div class="interest-box">
+          <h3>3D Scene Understanding</h3>
+          <p class="muted">
+            Semantic mapping, object-centric scene representation, open-vocabulary
+            perception, and structured 3D scene graphs.
+          </p>
+        </div>
+        <div class="interest-box">
+          <h3>Robotics</h3>
+          <p class="muted">
+            Perception for navigation and manipulation, embodied AI, and practical
+            deployment of intelligent robotic systems.
+          </p>
+        </div>
+        <div class="interest-box">
+          <h3>Multimodal AI</h3>
+          <p class="muted">
+            Integrating visual, geometric, and language information for better
+            reasoning, retrieval, and interaction in real-world environments.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications" class="section-card">
+      <h2 class="section-title">Publications</h2>
+      <div class="pub-list">
+        <article class="pub-item">
+          <strong>[1] Your Name, Coauthor Name, "Title of Your Paper," Conference/Journal, 2026.</strong>
+          <span class="muted">
+            Brief description of the work. Add DOI, arXiv, project page, or PDF link here.
+          </span>
+        </article>
+
+        <article class="pub-item">
+          <strong>[2] Your Name, Coauthor Name, "Another Publication Title," Conference/Journal, 2025.</strong>
+          <span class="muted">
+            Short summary of contribution, such as SLAM, scene graph generation, or robotic perception.
+          </span>
+        </article>
+
+        <article class="pub-item">
+          <strong>[3] Your Name, Coauthor Name, "Publication Title," Workshop/Journal, 2024.</strong>
+          <span class="muted">
+            You can duplicate this block to add more publications.
+          </span>
+        </article>
+      </div>
+    </section>
+
+    <section id="patents" class="section-card">
+      <h2 class="section-title">Patent</h2>
+      <div class="patent-list">
+        <article class="patent-item">
+          <strong>[1] Title of Patent</strong>
+          <div class="muted">Inventors: Your Name, Co-Inventor Name</div>
+          <div class="muted">Patent No.: [Patent Number] | Filed: [Year] | Status: [Pending/Registered]</div>
+        </article>
+
+        <article class="patent-item">
+          <strong>[2] Title of Patent</strong>
+          <div class="muted">Inventors: Your Name, Co-Inventor Name</div>
+          <div class="muted">Patent No.: [Patent Number] | Filed: [Year] | Status: [Pending/Registered]</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section-card">
+      <h2 class="section-title">Contact</h2>
+      <p>
+        Email: <a href="mailto:your.email@university.edu">your.email@university.edu</a><br />
+        Google Scholar: <a href="#">Add your profile link</a><br />
+        GitHub: <a href="#">Add your GitHub link</a><br />
+        Office: [Building / Room / Address]
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Your Name. All rights reserved.
+  </footer>
+</body>
+</html>
